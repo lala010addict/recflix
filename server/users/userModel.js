@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-<<<<<<< 69c7e27a10da2ffcbd8bebd12275349531783a0b
 var mongoose = require('mongoose');
 var bcrypt = require('bcrypt-nodejs');
 // Q        = require('q'),
