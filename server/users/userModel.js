@@ -50,10 +50,6 @@ module.exports = mongoose.model('User', userSchema);
 
 
 
-
-
-
-
 // UserSchema.methods.comparePasswords = function(candidatePassword) {
 //   var defer = Q.defer();
 //   var savedPassword = this.password;

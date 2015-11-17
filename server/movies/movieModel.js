@@ -4,7 +4,6 @@ var Schema = mongoose.Schema;
 // Q        = require('q'),
 // SALT_WORK_FACTOR  = 10;
 
-
 var movieSchema = new Schema({
   movieName: String,
   user: {
