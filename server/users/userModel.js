@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <<<<<<< 69c7e27a10da2ffcbd8bebd12275349531783a0b
 var mongoose = require('mongoose');
 var bcrypt = require('bcrypt-nodejs');
@@ -55,6 +56,32 @@ module.exports = mongoose.model('User', userSchema);
 //   var defer = Q.defer();
 //   var savedPassword = this.password;
 //   bcrypt.compare(candidatePassword, savedPassword, function(err, isMatch) {
+=======
+// var mongoose = require('mongoose'),
+//     bcrypt   = require('bcrypt-nodejs'),
+//     Q        = require('q'),
+//     SALT_WORK_FACTOR  = 10;
+
+
+// var UserSchema = new mongoose.Schema({
+//   username: {
+//     type: String,
+//     required: true,
+//     unique: true
+//   },
+
+//   password: {
+//     type: String,
+//     required: true
+//   },
+//   salt: String
+// });
+
+// UserSchema.methods.comparePasswords = function (candidatePassword) {
+//   var defer = Q.defer();
+//   var savedPassword = this.password;
+//   bcrypt.compare(candidatePassword, savedPassword, function (err, isMatch) {
+>>>>>>> master
 //     if (err) {
 //       defer.reject(err);
 //     } else {
@@ -64,7 +91,11 @@ module.exports = mongoose.model('User', userSchema);
 //   return defer.promise;
 // };
 
+<<<<<<< HEAD
 // UserSchema.pre('save', function(next) {
+=======
+// UserSchema.pre('save', function (next) {
+>>>>>>> master
 //   var user = this;
 
 //   // only hash the password if it has been modified (or is new)
