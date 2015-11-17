@@ -14,7 +14,6 @@ var movieSchema = new Schema({
   created: {type: Date, default: Date.now}
 });
 
-
 module.exports = mongoose.model('movies', usersSchema)
 
 
