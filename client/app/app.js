@@ -1,20 +1,28 @@
 angular.module('movieApp', [
   'movieApp.services',
-  'movieApp.links',
-  'movieApp.shorten',
+  'movieApp.movies',
+  'movieApp.something',
   'movieApp.auth',
   'ngRoute'
 ])
+// routes: '/', '/login', '/signup', 
 .config(function($routeProvider, $httpProvider) {
   $routeProvider
     .when('/signin', {
-      templateUrl: 'app/auth/signin.html',
+      templateUrl: 'client/app/auth/signin.html', // template for ng-view
       controller: 'AuthController'
     })
     .when('/signup', {
-      templateUrl: 'app/auth/signup.html',
+      templateUrl: 'client/app/auth/signup.html',
       controller: 'AuthController'
     })
+    .when('/', {
+      templateUrl: 'client/app/movies/movies.html',
+      controller: 'MovieController'
+    }).
+    otherwise({
+      redirectTo: '/'
+    });
     // Your code here
 
     // We add our $httpInterceptor into the array

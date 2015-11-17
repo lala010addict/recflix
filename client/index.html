@@ -3,18 +3,20 @@
   <head>
     <meta charset="utf-8" />
     <title>Shortly</title>
-    <link rel="stylesheet" type="text/css" href="../node_modules/bootstrap/dist/css/bootstrap.css" />
-    <link rel="stylesheet" type="text/css" href="styles/style.css" />
+    <link rel="stylesheet" type="text/css" href="/node_modules/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="client/styles/style.css" />
   </head>
   <body>
     <h1>Movie App</h1>
 
     <!-- the ng-view directive is where our templates will be loaded into when naviagted to -->
-    <div ng-view></div>
+    <div ng-view>
+        <ng-include src="'client/app/auth/signin.html'"></ng-include>
+    </div>
 
     <script src="../node_modules/jquery/dist/jquery.js"></script>
     <script src="../node_modules/bootstrap/dist/js/bootstrap.js"></script>
-    <script src="../node_modules/angular/angular.js"></script>
+    <script src="/node_modules/angular/angular.js"></script>
     <script src="../node_modules/angular-route/angular-route.js"></script>
 
     <script src="app/auth/auth.js"></script>
