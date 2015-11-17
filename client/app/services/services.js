@@ -11,10 +11,10 @@ angular.module('movieApp.services', [])
   // that JWT is then stored in localStorage as 'com.shortly'
   // after you signin/signup open devtools, click resources,
   // then localStorage and you'll see your token from the server
-  var signin = function (user) {
+  var signinFB = function (user) {
     return $http({
-      method: 'POST',
-      url: '/api/users/signin',
+      method: 'GET',
+      url: '/auth/facebook/callback',
       data: user
     })
     .then(function (resp) {
