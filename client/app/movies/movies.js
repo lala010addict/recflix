@@ -1,5 +1,5 @@
 angular.module('movieApp.movies', [])
 
-.controller('MovieController', function ($scope, Links) {
+.controller('MovieController', function ($scope) {
   // Your code here
 });
