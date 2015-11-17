@@ -14,8 +14,8 @@
 
   // var configDB = require('./server/config/db');
   // mongoose.connect(configDB.url);
-  var passportFB = require('./server/config/passport-fb')
-  var passportGoogle = require('./server/config/passport-google')
+  var passportFB = require('./server/config/passport-fb');
+  var passportGoogle = require('./server/config/passport-google');
 
   app.use(passport.initialize());
   app.use(passport.session()); // persistent login sessions
