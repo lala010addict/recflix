@@ -8,13 +8,8 @@ mongoose.connect('mongodb://localhost/shortly'); // connect to mongo database na
 // configure our server with all the middleware and and routing
 require('./server/config/middleware.js')(app, express);
 
-var port;
-if (process.env.PORT) {
-  port = process.env.PORT;
-} else {
-  port = 8000;
-}
-
-app.listen(port);
+app.listen(process.env.PORT || 3000, function(){
+  console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
+});
 
 module.exports = app;
