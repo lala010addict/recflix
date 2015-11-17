@@ -1,15 +1,30 @@
-  var express     = require('express'),
-      mongoose    = require('mongoose');
+  var express = require('express');
+  var mongoose = require('mongoose');
 
-var app = express();
+  var passport = require('passport');
+  var flash = require('flash');
 
-mongoose.connect('mongodb://localhost/shortly'); // connect to mongo database named shortly
+  var app = express();
 
-// configure our server with all the middleware and and routing
-require('./server/config/middleware.js')(app, express);
+  mongoose.connect('mongodb://localhost/moviesDB'); // connect to mongo database named shortly
 
-app.listen(process.env.PORT || 3000, function(){
-  console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
-});
+  // configure our server with all the middleware and and routing
+  require('./server/config/middleware.js')(app, express);
 
-module.exports = app;
+
+  // var configDB = require('./server/config/db');
+  // mongoose.connect(configDB.url);
+  var passportFB = require('./server/config/passport-fb')
+  var passportGoogle = require('./server/config/passport-google')
+
+  app.use(passport.initialize());
+  app.use(passport.session()); // persistent login sessions
+  app.use(flash()); // use connect-flash for flash messages stored in session
+
+  var routes = require('./server/routes.js');
+
+
+  app.listen(process.env.PORT || 3000, function() {
+    console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
+  });
+  module.exports = app;
