@@ -3,36 +3,27 @@ module.exports = function(grunt) {
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
 
-        mochaTest: {
-            test: {
-                options: {
-                    reporter: 'spec'
-                },
-                src: ['test/**/*.js']
-            }
-        },
-
         nodemon: {
             dev: {
-                script: 'index.js'
+                script: 'server.js'
             }
         },
 
-        uglify: {
-            my_target: {
-                files: {
-                    'public/dist/client_min.js': ['public/client/*.js']
-                }
-            }
-        },
+        // uglify: {
+        //     my_target: {
+        //         files: {
+        //             'public/dist/client_min.js': ['public/client/*.js']
+        //         }
+        //     }
+        // },
 
-        jshint: {
-            files: [
-                'public/client/*.js',
-            ],
-            options: {
-                asi: 'true',
-            }
+        // jshint: {
+        //     files: [
+        //         'public/client/*.js',
+        //     ],
+        //     options: {
+        //         asi: 'true',
+        //     }
             // options: {
             //   force: 'true',
             //   jshintrc: '.jshintrc',
@@ -42,43 +33,43 @@ module.exports = function(grunt) {
             //   ]
             // }
         },
-        cssmin: {
-            target: {
-                files: {
-                    'public/dist/style_min.css': ['public/style.css']
-                }
-            }
-        },
-        csslint: {
-            // strict: {
-            //     options: {
-            //         import: 2
-            //     },
-            //     src: ['public/dist/style_min.css']
-            // },
-            lax: {
-                options: {
-                    import: false
-                },
-                src: ['public/dist/style_min.css']
-            }
-        },
-        watch: {
-            scripts: {
-                files: [
-                    'public/client/**/*.js',
-                    'public/lib/**/*.js',
-                ],
-                tasks: [
-                    'concat',
-                    'uglify'
-                ]
-            },
-            css: {
-                files: 'public/*.css',
-                tasks: ['cssmin']
-            }
-        },
+        // cssmin: {
+        //     target: {
+        //         files: {
+        //             'public/dist/style_min.css': ['public/style.css']
+        //         }
+        //     }
+        // },
+        // csslint: {
+        //     // strict: {
+        //     //     options: {
+        //     //         import: 2
+        //     //     },
+        //     //     src: ['public/dist/style_min.css']
+        //     // },
+        //     lax: {
+        //         options: {
+        //             import: false
+        //         },
+        //         src: ['public/dist/style_min.css']
+        //     }
+        // },
+        // watch: {
+        //     scripts: {
+        //         files: [
+        //             'public/client/**/*.js',
+        //             'public/lib/**/*.js',
+        //         ],
+        //         tasks: [
+        //             'concat',
+        //             'uglify'
+        //         ]
+        //     },
+        //     css: {
+        //         files: 'public/*.css',
+        //         tasks: ['cssmin']
+        //     }
+        // },
 
         shell: {
             options: {
@@ -111,7 +102,7 @@ module.exports = function(grunt) {
         var nodemon = grunt.util.spawn({
             cmd: 'grunt',
             grunt: true,
-            args: 'nodemon'
+            // args: 'nodemon'
         });
         nodemon.stdout.pipe(process.stdout);
         nodemon.stderr.pipe(process.stderr);
@@ -123,16 +114,16 @@ module.exports = function(grunt) {
     // Main grunt tasks
     ////////////////////////////////////////////////////
 
-    grunt.registerTask('test', [
-        'mochaTest'
-    ]);
+    // grunt.registerTask('test', [
+    //     'mochaTest'
+    // ]);
 
     grunt.registerTask('build', [
-        'uglify',
-        'cssmin',
-        'jshint',
-        'csslint',
-        'mochaTest'
+        // 'uglify',
+        // 'cssmin',
+        // 'jshint',
+        // 'csslint',
+        // 'mochaTest'
     ]);
     // grunt.registerTask('shell', ['shell']);
     grunt.registerTask('upload', function(n) {

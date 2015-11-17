@@ -1,1 +1,1 @@
-grunt deploy --prod
+web: node server.js
