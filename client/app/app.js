@@ -3,6 +3,7 @@ angular.module('movieApp', [
   'movieApp.movies',
   'movieApp.search',
   'movieApp.auth',
+  'movieApp.toWatch',
   'ngRoute'
 ])
 // routes: '/', '/login', '/signup', 

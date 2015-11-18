@@ -1,16 +1,16 @@
-    <div class="row" ng-controller="MovieController">
-        <div class="col-md-4" ng-repeat="movie in films">
-            <div class="thumbnail">
-                <img src="http://placehold.it/200x300/EEE" class="">
-                <div class="caption">
-                    <h4 class="">{{movie.Name}}</h4>
-                    <button class="btn btn-default" ng-click="logger3()">logger</button>
-                    <p class="">Lorem ipsum dolor sit amet</p> 
-                    <a href=""  class="btn btn-default btn-xs pull-right" role="button" ng-click="console.log('hi')"><i class="glyphicon glyphicon-plus"></i></a>  
-                    <a href="{{movie.wUrl}}"  class="btn btn-default btn-xs" role="button">Wiki</a>
-                </div>
+<div class="row" ng-controller="MovieController">
+    <div class="col-md-3" ng-repeat="movie in films">
+        <div class="thumbnail">
+            <img src="http://placehold.it/200x300/EEE" class="">
+            <div class="caption">
+                <h4 class="">{{movie.Name}}</h4>
+                <button class="btn btn-default" ng-click="logger3()">logger</button>
+                <p class="">Lorem ipsum dolor sit amet</p> 
+                <a href=""  class="btn btn-default btn-xs pull-right" role="button" ng-click="console.log('hi')"><i class="glyphicon glyphicon-plus"></i></a>  
+                <a href="{{movie.wUrl}}"  class="btn btn-default btn-xs" role="button">Wiki</a>
             </div>
         </div>
     </div>
-    <!--/row-->
+</div>
+<!--/row-->
 <!--/container -->

@@ -19,9 +19,15 @@
     <!-- the ng-view directive is where our templates will be loaded into when naviagted to -->
 
 <!--  -->
+        <div class="container-fluid">
+          <row>
+          <ng-include src="'app/toWatchList/toWatch.html'">
+          <ng-include src="'app/movies/movies.html'">
+          </row>
+        </div>
 
-        <div class="container" ng-include src="'app/movies/movies.html'">
-        <div>
+
+
     
     <script src="node_modules/angular/angular.js"></script>
     <script src="node_modules/angular-route/angular-route.js"></script>
@@ -30,6 +36,7 @@
     <script src="app/movies/movie.js"></script>
     <script src="app/search/search.js"></script>
     <script src="app/services/services.js"></script>
+    <script src="app/toWatchList/toWatch.js"></script>
     <script src="app/app.js"></script>
   </body>
 </html>
