@@ -10,7 +10,20 @@
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
   </head>
   <body>
-<!--     <ng-include src="'static/header.html'"></ng-include> -->
+  <!-- FaceBook Login script: -->
+      <div id="fb-root"></div>
+      <script>
+         (function(d, s, id) {
+           var js, fjs = d.getElementsByTagName(s)[0];
+           if (d.getElementById(id)) {
+             return;
+           }
+           js = d.createElement(s); js.id = id;
+           js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=848126855303146";
+           fjs.parentNode.insertBefore(js, fjs);
+         } (document, 'script', 'facebook-jssdk'));
+      </script>
+
 
         <nav class="navbar navbar-inverse" ng-include="'app/static/header.html'"></nav>
 
@@ -21,8 +34,8 @@
 <!--  -->
         <div class="container-fluid">
           <row>
-          <ng-include src="'app/toWatchList/toWatch.html'">
-          <ng-include src="'app/movies/movies.html'">
+            <ng-include src="'app/toWatchList/toWatch.html'">
+            <ng-include src="'app/movies/movies.html'">
           </row>
         </div>
 

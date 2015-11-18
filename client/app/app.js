@@ -4,7 +4,7 @@ angular.module('movieApp', [
   'movieApp.search',
   'movieApp.auth',
   'movieApp.toWatch',
-  'ngRoute'
+  'ngRoute',
 ])
 // routes: '/', '/login', '/signup', 
 .config(function($routeProvider, $httpProvider) {

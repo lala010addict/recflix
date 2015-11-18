@@ -5,8 +5,9 @@
             <div class="caption">
                 <h4 class="">{{movie.Name}}</h4>
                 <button class="btn btn-default" ng-click="logger3()">logger</button>
+                <button class="btn btn-default diabled" ng-click="watchList.push(movie)">Add</button>
                 <p class="">Lorem ipsum dolor sit amet</p> 
-                <a href=""  class="btn btn-default btn-xs pull-right" role="button" ng-click="console.log('hi')"><i class="glyphicon glyphicon-plus"></i></a>  
+                <a href=""  class="btn btn-default btn-xs pull-right" role="button" ng-click=""><i class="glyphicon glyphicon-plus"></i></a>  
                 <a href="{{movie.wUrl}}"  class="btn btn-default btn-xs" role="button">Wiki</a>
             </div>
         </div>
