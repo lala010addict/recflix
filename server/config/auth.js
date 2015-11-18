@@ -10,6 +10,6 @@ module.exports = {
     'appID': '60150280473-98aa76m7qm2ne6rri3rvhghgf18ofh0o.apps.googleusercontent.com',
     'appSecret': 'Uz5rdXOBOkeGmNYYU1x_n26_',
     //'callbackUrl': 'http://localhost:3000/'
-     'callbackUrl' : 'http://localhost:3000/login/google/callback'
+    'callbackUrl': 'http://localhost:3000/login/google/callback'
   }
 };
