@@ -19,6 +19,8 @@
   "dependencies": {
     "angular": "^1.4.7",
     "angular-route": "^1.4.7",
+    "async" : "^1.5.0",
+    "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.14.1",
     "bootstrap": "^3.3.5",
     "connect-flash": "^0.1.1",
@@ -48,6 +50,9 @@
     "q": "^1.0.1",
     "requirejs": "^2.1.20",
     "static-favicon": "^1.0.2",
+    "q": "^1.0.1",
+    "request": "^2.36.0",
+    "requirejs": "^2.1.20",
     "superagent": "^1.4.0",
     "underscore": "^1.8.3",
     "winston": "^2.1.0"
