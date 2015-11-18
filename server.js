@@ -3,9 +3,10 @@
 
 var app = express();
 
-mongoose.connect('mongodb://localhost/shortly'); // connect to mongo database named shortly
+//TODO: NEED TO CHECK IF THIS WORKS
+mongoose.connect('mongodb://localhost/movieRecommender');
+//TODO: ABOVE
 
-// configure our server with all the middleware and and routing
 require('./server/config/middleware.js')(app, express);
 
 app.listen(process.env.PORT || 3000, function(){

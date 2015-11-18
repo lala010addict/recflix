@@ -1,26 +1,67 @@
-// var request = require('request'),
-//     Q       = require('q'),
-//     rValidUrl = /^(?!mailto:)(?:(?:https?|ftp):\/\/)?(?:\S+(?::\S*)?@)?(?:(?:(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5])){2}(?:\.(?:[0-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|(?:(?:[a-z\u00a1-\uffff0-9]+-?)*[a-z\u00a1-\uffff0-9]+)(?:\.(?:[a-z\u00a1-\uffff0-9]+-?)*[a-z\u00a1-\uffff0-9]+)*(?:\.(?:[a-z\u00a1-\uffff]{2,})))|localhost)(?::\d{2,5})?(?:\/[^\s]*)?$/i;
+var request 		= require('superagent'),
+		Q       		= require('q'),
+		configAuth 	= require('./auth'),
+		async				= require('async'),
+		_ 					= require('underscore');
 
+module.exports = {
 
-// module.exports = {
-//   getUrlTitle: function(url) {
-//     var defer = Q.defer();
-//     request(url, function(err, res, html) {
-//       if (err) {
-//         defer.reject(err);
-//       } else {
-//         var tag = /<title>(.*)<\/title>/;
-//         var match = html.match(tag);
-//         var title = match ? match[1] : url;
-//         defer.resolve(title);
-//       }
-//     });
-//     return defer.promise;
-//   },
+	getMovieInfo: function(movieTitle) {
+		var defer = Q.defer();
+		request.get({
+			uri: 'http://www.omdbapi.com/?',
+			t: movieTitle,
+			tomatoes: true,
+			plot: 'full'
+		}, function (error, res, movieInfo) {
+			if (error) {
+				defer.reject(err);
+			} else {
+				defer.resolve(movieInfo);
+			}
+		});
+		return defer.promise;
+	},
 
-//   isValidUrl: function(url) {
-//     return url.match(rValidUrl);
-//   }
-// };
+	populateMovieList: function(movieList){
+		var movies = JSON.parse(JSON.stringify(movieList));
+		for (var i = 0; i < movies.length; i++) {
+			var currentMovie = movies[i];
+			var currentTitle = currentMovie['Name'];
+			delete currentMovie['wTeaser'];
+			delete currentMovie['Name'];
+			var currentInfo = getMovieInfo(currentTitle);
+			_.extend(currentMovie, currentInfo);
+			movies[i] = currentMovie;
+		}
+		return movies;
+	},
+
+	getRecommendations: function(title) {
+		var defer = Q.defer();
+		request
+			.get('https://www.tastekid.com/api/similar?')
+			.query({k: '178217-MovieRec-N8M9T31S'})
+			.query({q: title})
+			.query({info: 1})
+			.end(function(err, res) {
+				if (err) {
+					defer.reject(err);
+				} else {
+					defer.resolve(res)
+				}
+			});
+		return defer.promise;
+		// }, function (error, res, movies) {
+		// 	if (error) { 
+		// 		defer.reject(error); 
+		// 	} else {
+		// 		// var results = movies['Similar']['Results'];
+		// 		// results = populateMovieList(results);
+		// 		defer.resolve(movies);
+		// 	}
+		// });
+		// return defer.promise;
+	}
+};
 

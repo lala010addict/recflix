@@ -7,12 +7,12 @@ module.exports = function (app) {
   // like line 16 below. That code will actually be the shortned url
   // so the real URL will be pre fetched from mongo and attached to
   // req.navLink before it reaches line 16.
-  app.param('code', movieController.findUrl);
+  app.get('/savedMovies', movieController.savedMovies)
+  app.get('/getRecommendations', movieController.getRecommendations);
+  app.post('/newMovie', movieController.newMovie);
 
   app.route('/')
-    .get(movieController.allLinks)
-    .post(movieController.newLink);
-
-  app.get('/:code', movieController.navToLink);
-
+    .get(movieController.savedMovies)
+    .post(movieController.newMovie)
+    // .delete(movieController.deleteMovie);
 };
