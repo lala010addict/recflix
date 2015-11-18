@@ -32,7 +32,7 @@ module.exports = function(grunt) {
             //     'public/dist/**/*.js'
             //   ]
             // }
-        },
+        // },
         // cssmin: {
         //     target: {
         //         files: {
@@ -54,22 +54,22 @@ module.exports = function(grunt) {
         //         src: ['public/dist/style_min.css']
         //     }
         // },
-        // watch: {
-        //     scripts: {
-        //         files: [
-        //             'public/client/**/*.js',
-        //             'public/lib/**/*.js',
-        //         ],
-        //         tasks: [
-        //             'concat',
-        //             'uglify'
-        //         ]
-        //     },
-        //     css: {
-        //         files: 'public/*.css',
-        //         tasks: ['cssmin']
-        //     }
-        // },
+         watch: {
+             scripts: {
+                 files: [
+                     'public/client/**/*.js',
+                     'public/lib/**/*.js',
+                 ],
+                 tasks: [
+                     'concat',
+                     'uglify'
+                 ]
+            },
+             css: {
+                 files: 'public/*.css',
+                 tasks: ['cssmin']
+             }
+         },
 
         shell: {
             options: {

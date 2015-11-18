@@ -11,6 +11,7 @@ var mongoose = require('mongoose');
 mongoose.connect(dbConfig.url);
 
 var app = express();
+// connect to correct db
 
 require('./server/config/middleware.js')(app, express);
 
