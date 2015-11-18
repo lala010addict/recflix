@@ -58,12 +58,12 @@ module.exports = function(passport){
   // handle the callback after facebook has authenticated the user
   router.get('/login/facebook/callback',
     passport.authenticate('facebook', {
-      successRedirect : '/home',
+      successRedirect : '/',
       failureRedirect : '/'
     })
   );
 
-  // route for twitter authentication and login
+  // route for google authentication and login
   // different scopes while logging in
   router.get('/login/google', 
     passport.authenticate('google'));
@@ -71,12 +71,12 @@ module.exports = function(passport){
   // handle the callback after facebook has authenticated the user
   router.get('/login/google/callback',
     passport.authenticate('google', {
-      successRedirect : '/google',
+      successRedirect : '/',
       failureRedirect : '/'
     })
   );
 
-  /* GET Twitter View Page */
+  /* GET google View Page */
   router.get('/google', isAuthenticated, function(req, res){
     res.render('google', { user: req.user });
   });

@@ -42,7 +42,7 @@ app.use(flash());
 var initPassport = require('./server/config/init');
 initPassport(passport);
 
-var routes = require('./server/routes')(passport);
+var routes = require('./server/users/userRoutes')(passport);
 app.use('/', routes);
 
 /// catch 404 and forward to error handler
