@@ -1,86 +1,74 @@
-var Link    = require('./movieModel.js'),
+var Movie    = require('./movieModel.js'),
     Q       = require('q'),
+    request     = require('superagent'),
+    async       = require('async'), 
+    configAuth  = require('../config/auth'),
     util    = require('../config/utils.js');
 
 
 module.exports = {
-  findUrl: function (req, res, next, code) {
-    var findLink = Q.nbind(Link.findOne, Link);
-    findLink({code: code})
-      .then(function (link) {
-        if (link) {
-          req.navLink = link;
-          next();
+
+  getRecommendations: function (req, res, next) {
+    var movieList;
+    
+     async.series([
+      function(callback) {
+        request
+      .get('https://www.tastekid.com/api/similar?')
+      .query(configAuth.tasteKid)
+      .query({q: 'Inception'})
+      .query({info: 1})
+      .end(function(err, res) {
+        if (err) {
+          console.log(err)
         } else {
-          next(new Error('Link not added yet'));
+          movieList = res.body;
+          callback(); 
         }
-      })
-      .fail(function (error) {
-        next(error);
       });
+      }, 
+      function(callback){
+        res.json(movieList)
+        callback();
+      }])
   },
 
-  allLinks: function (req, res, next) {
-  var findAll = Q.nbind(Link.find, Link);
+  savedMovies: function (req, res, next) {
+  var findAll = Q.nbind(Movie.find, Movie);
 
   findAll({})
-    .then(function (links) {
-      res.json(links);
+    .then(function (movies) {
+      res.json(movies);
     })
     .fail(function (error) {
       next(error);
     });
   },
 
-  newLink: function (req, res, next) {
-    var url = req.body.url;
-    console.log(req.body);
-    if (!util.isValidUrl(url)) {
-      return next(new Error('Not a valid url'));
-    }
+  newMovie: function (req, res, next) {
+    var title = req.body.title;
+    var createMovie = Q.nbind(Movie.create, Movie);
+    var findMovie = Q.nbind(Movie.findOne, Movie);
 
-    var createLink = Q.nbind(Link.create, Link);
-    var findLink = Q.nbind(Link.findOne, Link);
-
-    findLink({url: url})
+    findMovie({title: title})
       .then(function (match) {
         if (match) {
           res.send(match);
         } else {
-          return  util.getUrlTitle(url);
-        }
-      })
-      .then(function (title) {
-        if (title) {
-          var newLink = {
-            url: url,
-            visits: 0,
-            base_url: req.headers.origin,
+          var newMovie = {
             title: title
           };
-          return createLink(newLink);
+          return createMovie(newMovie);
         }
       })
-      .then(function (createdLink) {
-        if (createdLink) {
-          res.json(createdLink);
+      .then(function (createdMovie) {
+        if (createdMovie) {
+          res.json(createdMovie);
         }
       })
       .fail(function (error) {
         next(error);
       });
-  },
-
-  navToLink: function (req, res, next) {
-    var link = req.navLink;
-    link.visits++;
-    link.save(function (err, savedLink) {
-      if (err) {
-        next(err);
-      } else {
-        res.redirect(savedLink.url);
-      }
-    });
   }
 
 };

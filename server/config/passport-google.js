@@ -14,12 +14,14 @@ module.exports = function(passport) {
     // google will send back the tokens and profile
     function(access_token, refresh_token, profile, done) {
 
+        console.log('profile', profile);
+
       // asynchronous
       process.nextTick(function() {
 
         // find the user in the database based on their google id
         User.findOne({
-          googleId: profile.id
+          'google.id': profile.id
         }, function(err, user) {
 
           // if there is an error, stop everything and return that

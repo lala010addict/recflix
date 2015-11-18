@@ -32,7 +32,7 @@ module.exports = function(passport) {
   // different scopes while logging in
 
   router.get('/login/google', passport.authenticate('google', {
-    scope: 'https://www.googleapis.com/auth/plus.login'
+    scope : ['profile', 'email']
   }));
 
   // the callback after google has authenticated the user

@@ -14,14 +14,13 @@ module.exports = function(passport) {
     function(access_token, refresh_token, profile, done) {
 
       console.log('profile', profile);
-      console.log('profiledfprofiledfdfdfdprofiledfdfdfdprofiledfdfdfdprofiledfdfdfddfdfd');
 
       // asynchronous
       process.nextTick(function() {
 
         // find the user in the database based on their facebook id
         User.findOne({
-          'id': profile.id
+          'fb.id': profile.id
         }, function(err, user) {
 
           // if there is an error, stop everything and return that
@@ -41,7 +40,6 @@ module.exports = function(passport) {
             newUser.fb.access_token = access_token; // we will save the token that facebook provides to the user                  
             newUser.fb.name = profile.displayName;
             // newUser.fb.lastName = profile.name.displayName; // look at the passport user profile to see how names are returned
-            //  newUser.fb.email = profile.emails[0].value; // facebook can return multiple emails so we'll take the first
 
             // save our user to the database
             newUser.save(function(err) {

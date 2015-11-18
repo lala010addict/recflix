@@ -10,7 +10,7 @@ angular.module('movieApp.services', ['$rootScope', '$window', '$http',
         this.isLoggedIn = false;
       },
       facebookLogin: function() {
-        var url = '/auth/facebook',
+        var url = '/login/facebook',
           width = 1000,
           height = 650,
           top = (window.outerHeight - height) / 2,
