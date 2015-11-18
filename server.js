@@ -1,47 +1,74 @@
 var express = require('express');
-var mongoose = require('mongoose');
-var passport = require('passport');
-var flash = require('connect-flash');
 var path = require('path');
 var favicon = require('static-favicon');
-//var logger = require('morgan');
-// var cookieParser = require('cookie-parser');
-//var bodyParser = require('body-parser');
+var logger = require('morgan');
+var cookieParser = require('cookie-parser');
+var bodyParser = require('body-parser');
+
+var dbConfig = require('./server/config/db');
+var mongoose = require('mongoose');
+// Connect to DB
+mongoose.connect(dbConfig.url);
 
 var app = express();
 
-var dbConfig = require('./server/config/db');
-mongoose.connect(dbConfig.url); // connect to mongo database named shortly
+//  http://localhost:3000/login/facebook
+// view engine setup
+// app.set('views', path.join(__dirname, 'views'));
+// app.set('view engine', 'jade');
 
+require('./server/config/middleware.js')(app, express);
+// app.use(favicon());
+// app.use(logger('dev'));
+// app.use(bodyParser.json());
+// app.use(bodyParser.urlencoded({ extended: true }));
+// app.use(cookieParser());
+//app.use(express.static(path.join(__dirname, 'public')));
+
+// Configuring Passport
+var passport = require('passport');
 var expressSession = require('express-session');
 // TODO - Why Do we need this key ?
 //app.use(expressSession({secret: 'mySecretKey'}));
-
-
-app.use(favicon());
-//app.use(logger('dev'));
-//app.use(bodyParser.json());
-//app.use(bodyParser.urlencoded());
-// app.use(cookieParser());
-
-
-// configure our server with all the middleware and and routing
-require('./server/config/middleware.js')(app, express);
-
-
-// var configDB = require('./server/config/db');
-// mongoose.connect(configDB.url);
-var passportFB = require('./server/config/passport-fb');
-var passportGoogle = require('./server/config/passport-google');
-
 app.use(passport.initialize());
-app.use(passport.session()); // persistent login sessions
-app.use(flash()); // use connect-flash for flash messages stored in session
+app.use(passport.session());
 
-var routes = require('./server/routes.js');
+ // Using the flash middleware provided by connect-flash to store messages in session
+ // and displaying in templates
+var flash = require('connect-flash');
+app.use(flash());
 
+// Initialize Passport
+var initPassport = require('./server/config/init');
+initPassport(passport);
 
-app.listen(process.env.PORT || 3000, function() {
-  console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
+var routes = require('./server/routes')(passport);
+app.use('/', routes);
+
+/// catch 404 and forward to error handler
+app.use(function(req, res, next) {
+    var err = new Error('Not Found');
+    err.status = 404;
+    next(err);
 });
+
+// development error handler
+// will print stacktrace
+if (app.get('env') === 'development') {
+    app.use(function(err, req, res, next) {
+        res.status(err.status || 500);
+        res.render('error', {
+            message: err.message,
+            error: err
+        });
+    });
+}
+
+  app.listen(process.env.PORT || 3000, function() {
+    console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
+  });
+
+
+
+
 module.exports = app;
