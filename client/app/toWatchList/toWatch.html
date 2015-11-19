@@ -14,15 +14,11 @@
         <div class="navbar-collapse collapse sidebar-navbar-collapse">
           <ol class="nav navbar-nav">
             <li class="active" ng-repeat="movie in watchList">
-              <a href="#">{{movie.Name}}</a>
+              <a href="#">{{movie.Title}}</a> <button class="btn btn-default" ng-click="removeFromWatchList()">remove</button>
             </li>
           </ol>
         </div><!--/.nav-collapse -->
       </div>
     </div>
-  </div>
-  <div class="col-sm-9">
-         <ng-include src="'app/movies/movies.html'">
-        
   </div>
 </div>

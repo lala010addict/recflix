@@ -7,6 +7,7 @@
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha/css/bootstrap.min.css" />
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
   </head>
   <body>
@@ -31,15 +32,13 @@
 
     <!-- the ng-view directive is where our templates will be loaded into when naviagted to -->
 
-<!--  -->
-        <div class="container-fluid">
-          <row>
-            <ng-include src="'app/toWatchList/toWatch.html'">
+
+        <div class="container-fluid"> <!-- Main App container -->
             <ng-include src="'app/movies/movies.html'">
-          </row>
         </div>
 
-
+<!-- nav conatiner-fluid
+      -->
 
     
     <script src="node_modules/angular/angular.js"></script>
