@@ -25,7 +25,8 @@ angular.module('movieApp.search', [])
                 console.log(response);
         });
     };
-  })
+  }) // serach bar --> search ---> take search query and do a GET to our server --> return the data 
+      // to the 'movies' array 
   .factory('Movies', function() {
     var movies = [];
     var watchList = [];
