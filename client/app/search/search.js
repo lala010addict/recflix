@@ -1,13 +1,24 @@
 angular.module('movieApp.search', [])
-  .controller('SearchCtrl', function ($scope, $http, Movies){
+  .controller('SearchCtrl', function ($scope, $http, Movies, Search){
+    $scope.data = {}; //
     $scope.searchString = '';
     $scope.movies = Movies.movies;
     $scope.tasteKid = Movies.tasteKid;
     $scope.logger = function() {
       console.log($scope.searchString);
     };
-    $scope.renderMovies = function() {
-
+    $scope.searchHandler = function() { //
+      Search.getMovies($scope.searchString) // from services in the Search factory
+        .then(function (movies) {
+          $scope.data.movies = movies;
+          console.log('Hello form searchHandler!');
+          console.log($scope.data.movies);
+        })
+        .catch(function () {
+          console.log('there was an error here');
+          console.log($scope.data.movies);
+          console.log('searchString is: ' + $scope.searchString);
+        });
     };
     $scope.grabMovies = function() {
       var tastekid = "https://www.tastekid.com/api/similar?q=pulp+fiction&k=178458-na-U9R8JJIW";

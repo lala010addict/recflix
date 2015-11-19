@@ -9,6 +9,13 @@ var dbConfig = require('./server/config/db');
 var mongoose = require('mongoose');
 // Connect to DB
 mongoose.connect(dbConfig.url);
+// omar:
+var db = mongoose.connection;
+db.on('error', console.error);
+db.once('open', function() {
+  console.log('db connection open, sweet!');
+  startServer();
+});
 
 var app = express();
 // connect to correct db
@@ -53,10 +60,13 @@ app.use(function(req, res, next) {
 //     });
 //   });
 // }
+// omar:
+function startServer() {
+  var server = app.listen(process.env.PORT || 3000, function() {
+    console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
+  });  
+}
 
-app.listen(process.env.PORT || 3000, function() {
-  console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
-});
 
 
 module.exports = app;

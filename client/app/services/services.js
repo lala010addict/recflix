@@ -1,7 +1,23 @@
 angular.module('movieApp.services', [])
 
-.factory('Links', function ($http) {
-  // Your code here
+.factory('Search', function ($http) {
+  var getMovies = function(query) {
+    return $http({
+      method: 'GET',
+      url: '/api/movies/',
+      data: query
+    })
+    .then(function(resp) {
+      //if (err) console.log(err);
+      console.log('hello from our api!');
+      console.log(resp.data, 'this is the data');
+
+      return resp.data;
+    });
+  };
+  return {
+    getMovies: getMovies
+  };
 })
 .factory('Auth', function ($http, $location, $window) {
   // Don't touch this Auth service!!!

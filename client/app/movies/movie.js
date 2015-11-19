@@ -4,7 +4,7 @@ angular.module('movieApp.movies', [])
   // Your code here
   // add this movie to users playlist
   // modal for more info
-  $scope.films = Movies.tasteKid; //list of films returned
+  $scope.films = Movies.movies; //list of films returned
   $scope.watchList = Movies.watchList;
   $scope.logger3 = function() {
     console.log('hello from MovieController');
@@ -19,7 +19,7 @@ angular.module('movieApp.movies', [])
     },
     templateUrl: 'app/movies/movie.html',
     controller: function($scope) {
-      console.log($scope.watchList);
+      
     }
   };
 });
