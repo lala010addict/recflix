@@ -8,6 +8,7 @@ module.exports = function(app, express) {
   // Express 4 allows us to use multiple routers with their own configurations
 
   //var userRouter = express.Router();
+
   var movieRouter = express.Router();
 
   app.use(morgan('dev'));
@@ -19,14 +20,12 @@ module.exports = function(app, express) {
   app.use(bodyParser.json());
   app.use(express.static(__dirname + '/../../client'));
   app.use(cookieParser());
-
+  //register /api/... and assign routers that will take care of it 
   app.use('/api/movies', movieRouter);
-  //app.use('/api/users', userRouter); 
 
   app.use(helpers.errorLogger);
   app.use(helpers.errorHandler);
 
   // inject our routers into their respective route files
-  //require('../users/userRoutes.js')(userRouter);
   require('../movies/movieRoutes.js')(movieRouter);
 };
