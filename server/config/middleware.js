@@ -20,9 +20,9 @@ module.exports = function(app, express) {
   app.use(express.static(__dirname + '/../../client'));
   app.use(cookieParser());
 
-
   app.use('/api/movies', movieRouter);
   app.use('/api/users', userRouter); 
+
 
 
   app.use(helpers.errorLogger);
