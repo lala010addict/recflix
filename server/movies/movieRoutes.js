@@ -12,5 +12,5 @@ module.exports = function (app) {
   app.route('/')
     .get(movieController.savedMovies)
     .post(movieController.newMovie)
-    .delete(movieController.deleteMovie);
+    // .delete(movieController.deleteMovie);
 };
