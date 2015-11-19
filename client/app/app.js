@@ -1,9 +1,10 @@
 angular.module('movieApp', [
   'movieApp.services',
   'movieApp.movies',
-  'movieApp.something',
+  'movieApp.search',
   'movieApp.auth',
-  'ngRoute'
+  'movieApp.toWatch',
+  'ngRoute',
 ])
 // routes: '/', '/login', '/signup', 
 .config(function($routeProvider, $httpProvider) {
@@ -17,7 +18,7 @@ angular.module('movieApp', [
       controller: 'AuthController'
     })
     .when('/', {
-      templateUrl: 'client/app/movies/movies.html',
+      templateUrl: 'app/static/movie.html',
       controller: 'MovieController'
     }).
     otherwise({

@@ -1,28 +1,57 @@
 <!DOCTYPE html>
 <html ng-app='movieApp'>
   <head>
-    <meta charset="utf-8" />
-    <title>Shortly</title>
-    <link rel="stylesheet" type="text/css" href="/node_modules/bootstrap/dist/css/bootstrap.css" />
-    <link rel="stylesheet" type="text/css" href="client/styles/style.css" />
+    <meta name="google-signin-client_id" content="60150280473-98aa76m7qm2ne6rri3rvhghgf18ofh0o.apps.googleusercontent.com">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Moviefinder</title>
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
   </head>
   <body>
-    <h1>Movie App</h1>
+  <!-- FaceBook Login script: -->
+      <div id="fb-root"></div>
+
+
+
+        <nav class="navbar navbar-inverse" ng-include="'app/static/header.html'"></nav>
+
+
 
     <!-- the ng-view directive is where our templates will be loaded into when naviagted to -->
-    <div ng-view>
-        <ng-include src="'client/app/auth/signin.html'"></ng-include>
-    </div>
 
-    <script src="../node_modules/jquery/dist/jquery.js"></script>
-    <script src="../node_modules/bootstrap/dist/js/bootstrap.js"></script>
-    <script src="/node_modules/angular/angular.js"></script>
-    <script src="../node_modules/angular-route/angular-route.js"></script>
+
+        <div class="container-fluid"> <!-- Main App container -->
+            <ng-include src="'app/movies/movies.html'">
+        </div>
+
+<!-- nav conatiner-fluid
+      -->
+
+    
+    <script src="node_modules/angular/angular.js"></script>
+    <script src="node_modules/angular-route/angular-route.js"></script>
 
     <script src="app/auth/auth.js"></script>
-    <script src="app/movies/movies.js"></script>
-    <script src="app/something/something.js"></script>
+    <script src="app/movies/movie.js"></script>
+    <script src="app/search/search.js"></script>
     <script src="app/services/services.js"></script>
-    <script src="app/app.js"></script>
+    <script src="app/toWatchList/toWatch.js"></script>
+    <script src="app/app.js"></script>      
+    <script>
+         (function(d, s, id) {
+           var js, fjs = d.getElementsByTagName(s)[0];
+           if (d.getElementById(id)) {
+             return;
+           }
+           js = d.createElement(s); js.id = id;
+           js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=848126855303146";
+           fjs.parentNode.insertBefore(js, fjs);
+         } (document, 'script', 'facebook-jssdk'));
+    </script>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
   </body>
 </html>
