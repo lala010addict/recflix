@@ -1,5 +1,10 @@
 var express = require('express');
 var router = express.Router();
+var mongoose = require('mongoose')
+var User = mongoose.model('User')
+var async = require('async')
+var auth = require('../config/authorization.js')
+
 
 var isAuthenticated = function(req, res, next) {
   // if user is authenticated in the session, call the next() to call the next request handler 
@@ -41,6 +46,18 @@ module.exports = function(passport) {
       successRedirect: '/',
       failureRedirect: '/'
     }));
+
+  // GET /logout
+  router.get('/logout', function(req, res, next) {
+    req.logout();
+    res.redirect('/');
+  });
+
+  router.get('/', function(req, res, next) {
+  res.send('respond with a resource');
+});
+
+
 
   return router;
 }
