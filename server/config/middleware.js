@@ -7,7 +7,7 @@ var morgan = require('morgan'), // used for logging incoming request
 module.exports = function(app, express) {
   // Express 4 allows us to use multiple routers with their own configurations
 
-  var userRouter = express.Router();
+  //var userRouter = express.Router();
   var movieRouter = express.Router();
 
   app.use(morgan('dev'));
@@ -21,17 +21,12 @@ module.exports = function(app, express) {
   app.use(cookieParser());
 
   app.use('/api/movies', movieRouter);
-  app.use('/api/users', userRouter); 
+  //app.use('/api/users', userRouter); 
 
-
-
-  app.use(helpers.errorLogger);
-  app.use(helpers.errorHandler);
-  
   app.use(helpers.errorLogger);
   app.use(helpers.errorHandler);
 
   // inject our routers into their respective route files
-  require('../users/userRoutes.js')(userRouter);
+  //require('../users/userRoutes.js')(userRouter);
   require('../movies/movieRoutes.js')(movieRouter);
 };

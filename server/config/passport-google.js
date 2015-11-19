@@ -21,7 +21,7 @@ module.exports = function(passport) {
 
         // find the user in the database based on their google id
         User.findOne({
-          'google.id': profile.id
+          'id': profile.id
         }, function(err, user) {
 
           // if there is an error, stop everything and return that
@@ -37,9 +37,9 @@ module.exports = function(passport) {
             var newUser = new User();
 
             // set all of the google information in our user model
-            newUser.google.id = profile.id;
-            newUser.google.token = access_token;
-            newUser.google.name = profile.displayName;
+            newUser.id = profile.id;
+            newUser.access_token = access_token;
+            newUser.name = profile.displayName;
             //  newUser.google.lastName = profile.name.displayName; // look at the passport user profile to see how names are returned
             //  newUser.google.email = profile.emails[0].value; // google can return multiple emails so we'll take the first
 
