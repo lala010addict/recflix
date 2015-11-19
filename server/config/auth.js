@@ -10,5 +10,9 @@ module.exports = {
         'clientID'      : '60150280473-98aa76m7qm2ne6rri3rvhghgf18ofh0o.apps.googleusercontent.com',
         'clientSecret'  : 'Uz5rdXOBOkeGmNYYU1x_n26_',
         'callbackURL'   : 'http://localhost:8080/auth/google/callback'
+    }, 
+
+    'tasteKid' : {
+        'k' : '178217-MovieRec-N8M9T31S'
     }
 };
