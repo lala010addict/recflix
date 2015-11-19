@@ -3,7 +3,6 @@ var Movie       = require('./movieModel.js'),
     request     = require('superagent'),
     async       = require('async'), 
     configAuth  = require('../config/auth'),
-    util        = require('../config/utils.js'),
     _           = require('underscore');
 
 
