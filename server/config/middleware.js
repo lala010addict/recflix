@@ -18,7 +18,7 @@ module.exports = function(app, express) {
   app.use(bodyParser.json());
   app.use(express.static(__dirname + '/../../client'));
   app.use(cookieParser());
-  //register /api/... and assign routers that will take care of it
+  //register /api/... and assign routers that will take care of it 
   app.use('/api/movies', movieRouter);
   app.use('/api/users', userRouter); 
 
