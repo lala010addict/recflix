@@ -1,27 +1,28 @@
-<!-- Your html here -->
-<div class="container">
+<!-- Your html here 
+<div class="container"></div>
   <div class="row">
-    <div class="col-md-1"></div>
-    <div class="col-md-4">
-    <div class="card card-block">
-      <img class="card-img-top" src="http://placehold.it/200x300" alt="Card image cap">
-        <div class="card-block">
-            <h4 class="card-title">Card title</h4>
-            <p class="card-text">Some quick example text to build on the.</p>
-            <a href="#/" class="btn btn-primary">Button</a>
-        </div>
-    </div>
-      <img src="http://placehold.it/350x150">
-      <img src="http://placehold.it/350x150">
-      <img src="http://placehold.it/350x150">
-      <img src="http://placehold.it/350x150">
-      <img src="http://placehold.it/350x150">
-      <img src="http://placehold.it/350x150">
-      <img src="http://placehold.it/350x150">
-    </div>
-    <div class="col-md-2">
-      <img src="http://placehold.it/150x650">
-    </div>
-    <div class="col-md-1"></div>
+    <div ng-include="'app/search/search.html'"></div>
+  </div> -->
+
+<div class="row">
+    <div class="col-lg-11" ng-include src="'app/search/search.html'"></div>
+    <br><br>
+</div> 
+<div class="row">
+  <div class="col-lg-1"><!-- Next row down just holds watchlist -->
+    <ng-include src="'app/toWatchList/toWatch.html'">
+  </div>
+  <div class="col-lg-10 col-lg">
+    <movie-card></movie-card>
   </div>
 </div>
+
+<!-- disable add button after click
+      EXTRA: add a watched button on the watchlist
+      X remove from watchlist
+      api gets
+      fb/goog logins
+      -getter/setter for adding movies to user specific watchilst
+
+       -->
+
