@@ -44,10 +44,10 @@ angular.module('movieApp.services', [])
 
 
   return {
-    signin: signin,
+    signinFB: signinFB,
     signup: signup,
     isAuth: isAuth,
     signout: signout
   };
 });
->>>>>>> b28a4c5cb73b19797eaee2a66472676e28e32df2
+
