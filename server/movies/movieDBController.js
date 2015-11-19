@@ -2,6 +2,8 @@ var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose')
 var Movie = mongoose.model('Movie')
+var expressSession = require('express-session');
+
 
 function makeError(res, message, status) {
   res.statusCode = status;
