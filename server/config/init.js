@@ -18,7 +18,7 @@ module.exports = function(passport) {
     });
   });
 
-  // Setting up Passport Strategies for Facebook and Twitter
+  // Setting up Passport Strategies for Facebook and Google
   facebook(passport);
   google(passport);
 

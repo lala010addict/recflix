@@ -9,6 +9,10 @@ var dbConfig = require('./server/config/db');
 var mongoose = require('mongoose');
 // Connect to DB
 mongoose.connect(dbConfig.url);
+mongoose.connection.once('open', function() {
+  console.log("Mongoose has connected to MongoDB!");
+});
+
 
 var app = express();
 
@@ -17,8 +21,8 @@ require('./server/config/middleware.js')(app, express);
 // Configuring Passport
 var passport = require('passport');
 var expressSession = require('express-session');
-// TODO - Why Do we need this key ?
-//app.use(expressSession({secret: 'mySecretKey'}));
+
+//app.use(session({secret: 'mySecretKey'}));
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -33,6 +37,21 @@ initPassport(passport);
 
 var routes = require('./server/users/userRoutes')(passport);
 app.use('/', routes);
+var movies = require('./server/movies/movieDBController')
+app.use('/movies', movies);
+
+//app.use('/', routes);
+
+// This middleware will allow us to use the currentUser in our views and routes.
+app.use(function(req, res, next) {
+  global.currentUser = req.user;
+  next();
+});
+
+// // Routes
+// app.use('/', routes);
+// // app.use('/users', users);
+// app.use('/movies', movies);
 
 /// catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -52,6 +71,7 @@ app.use(function(req, res, next) {
 //     });
 //   });
 // }
+
 
 app.listen(process.env.PORT || 3000, function() {
   console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
