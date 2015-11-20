@@ -4,12 +4,14 @@
         <div class="thumbnail" >
             <img id="movieImage" ng-src={{movie.Poster}}>
             <div class="caption">
-                <h4 class="">{{movie.Title}}</h4>
-                <button class="btn btn-default" ng-click="logger3()">logger</button>
+                <h3 class="">{{movie.Title}}</h3>
+                <h5 class="">{{movie.Awards}}</h5>
                 <button class="btn btn-default" ng-click="watchList.push(movie)">Add</button>
-                <p class="">Lorem ipsum dolor sit amet</p> 
+                <p class="">{{movie.Plot.slice(0, 100)}}...</p> 
                 <a href="{{movie.YouTubeURL}}"  class="btn btn-default btn-xs" role="button"><i class="glyphicon glyphicon-play"></i></a>  
-                <a href=""  class="btn btn-default btn-xs pull-right" role="button" ng-click=""><i class="glyphicon glyphicon-plus"></i></a>  
+                <a data-toggle="tooltip" title="{{movie.tomatoRating}}" href=""  class="btn btn-default btn-xs pull-right" role="button" ng-click="">
+                <img src="https://leanflix-production.storage.googleapis.com/production/assets/elements/critics-bc20c6ba489de471c76e312a9ee9244e.png">
+                </a>  
                 <a href="{{movie.WikiURL}}"  class="btn btn-default btn-xs" role="button">Wiki</a>
             </div>
         </div>
