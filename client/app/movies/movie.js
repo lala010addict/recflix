@@ -14,14 +14,41 @@ angular.module('movieApp.movies', [])
     console.log($scope.films);
   };
   $scope.handleSearch = function(str) {
-      Movies.handleSearch(str)
+      return Movies.handleSearch(str)
         .then(function (movies) {
-          Movies.movies = movies;
-          $scope.films = Movies.movies;
-          console.log('Movie.movies' , Movies.movies);
-          console.log('$scope.films' , $scope.films);
+          $scope.films = movies;
+          console.log('scope.films', $scope.films);
         });
-      // $scope.movies = newMovies;
-    };
+  };
+  $scope.$watch('films', function (newValue, oldValue) {
+      console.log('films has changed');
+      console.log('old ', oldValue);
+      console.log('new ', newValue);
+    });
 })
-
+  .factory('Movies', function (Search) {
+    var movies = [];
+    var searchString = '';
+    var watchList = [];
+    var handleSearch = function(str) {
+      return Search.getMovies(str)
+        .then(function (searchResults) {
+          results = searchResults;
+          movies.push(searchResults);
+          // console.log("from handle search");
+          // console.log(searchResults, 'this is the search results');
+          // console.log(this.movies, 'this is this.movies');
+          return results.data;
+        })
+        .catch(function() {
+          console.log("we have an error in handleSearch");
+        });
+    };
+    
+    return {
+      movies: movies,
+      watchList: watchList,
+      handleSearch: handleSearch,
+      searchString: searchString
+    };
+  });

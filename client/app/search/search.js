@@ -16,30 +16,6 @@ angular.module('movieApp.search', [])
   //     console.log('$scope.movies' , $scope.movies);
   //   };
     
-  }) // serach bar --> search ---> take search query and do a GET to our server --> return the data 
+  }) ;// serach bar --> search ---> take search query and do a GET to our server --> return the data 
       // to the 'movies' array 
-  .factory('Movies', function (Search) {
-    var movies = [];
-    var searchString = '';
-    var watchList = [];
-    var handleSearch = function(str) {
-      return Search.getMovies(str)
-        .then(function (searchResults) {
-          this.movies = searchResults;
-          // console.log("from handle search");
-          // console.log(searchResults, 'this is the search results');
-          // console.log(this.movies, 'this is this.movies');
-          return this.movies;
-        })
-        .catch(function() {
-          console.log("we have an error in handleSearch");
-        });
-    };
-    
-    return {
-      movies: movies,
-      watchList: watchList,
-      handleSearch: handleSearch,
-      searchString: searchString
-    };
-  });
+
