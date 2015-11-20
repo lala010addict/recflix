@@ -18,7 +18,6 @@ angular.module('movieApp.movies', [])
         .then(function (movies) {
           Movies.movies = movies;
           $scope.films = Movies.movies;
-          console.log('scope.films', $scope.films);
         });
   };
   $scope.$watch('films', function (newValue, oldValue) {
@@ -36,13 +35,9 @@ angular.module('movieApp.movies', [])
         .then(function (searchResults) {
           results = searchResults;
           movies.push(searchResults);
-          // console.log("from handle search");
-          // console.log(searchResults, 'this is the search results');
-          // console.log(this.movies, 'this is this.movies');
           return searchResults.data;
         })
         .catch(function() {
-          console.log("we have an error in handleSearch");
         });
     };
     
