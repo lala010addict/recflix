@@ -1,6 +1,6 @@
 angular.module('movieApp.movies', [])
 
-.controller('MovieController', function ($scope, Movies) {
+.controller('MovieController', function ($scope, $route, Movies) {
   // Your code here
   // add this movie to users playlist
   // modal for more info
@@ -16,7 +16,8 @@ angular.module('movieApp.movies', [])
   $scope.handleSearch = function(str) {
       return Movies.handleSearch(str)
         .then(function (movies) {
-          $scope.films = movies;
+          Movies.movies = movies;
+          $scope.films = Movies.movies;
           console.log('scope.films', $scope.films);
         });
   };
@@ -38,7 +39,7 @@ angular.module('movieApp.movies', [])
           // console.log("from handle search");
           // console.log(searchResults, 'this is the search results');
           // console.log(this.movies, 'this is this.movies');
-          return results.data;
+          return searchResults.data;
         })
         .catch(function() {
           console.log("we have an error in handleSearch");
