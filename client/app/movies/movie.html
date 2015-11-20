@@ -1,6 +1,7 @@
+
 <div class="row" ng-controller="MovieController">
-    <div class="col-lg-2" ng-repeat="movie in films">
-        <div class="thumbnail">
+    <div class="col-lg-2" ng-repeat="movie in films[0]">
+        <div class="thumbnail" >
             <img id="movieImage" ng-src={{movie.Poster}}>
             <div class="caption">
                 <h4 class="">{{movie.Title}}</h4>

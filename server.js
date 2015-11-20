@@ -9,9 +9,13 @@ var dbConfig = require('./server/config/db');
 var mongoose = require('mongoose');
 // Connect to DB
 mongoose.connect(dbConfig.url);
-mongoose.connection.once('open', function() {
-  console.log("Mongoose has connected to MongoDB!");
+var db = mongoose.connection;
+db.on('error', console.error);
+db.once('open', function() {
+  console.log('db connection open, sweet!');
+  startServer();
 });
+
 
 
 var app = express();
@@ -37,7 +41,7 @@ initPassport(passport);
 
 var routes = require('./server/users/userRoutes')(passport);
 app.use('/', routes);
-var movies = require('./server/movies/movieDBController')
+var movies = require('./server/movies/movieDBController');
 app.use('/movies', movies);
 
 //app.use('/', routes);
@@ -73,9 +77,12 @@ app.use(function(req, res, next) {
 // }
 
 
-app.listen(process.env.PORT || 3000, function() {
-  console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
-});
+// omar:
+function startServer() {
+  var server = app.listen(process.env.PORT || 3000, function() {
+    console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
+  });  
+}
 
 
 module.exports = app;

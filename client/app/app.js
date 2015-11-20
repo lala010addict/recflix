@@ -20,6 +20,10 @@ angular.module('movieApp', [
     .when('/', {
       templateUrl: 'app/static/movie.html',
       controller: 'MovieController'
+    })
+    .when('/api/movies', {
+      templateUrl: 'app/static/movie.html',
+      controller: 'MovieController'
     }).
     otherwise({
       redirectTo: '/'
