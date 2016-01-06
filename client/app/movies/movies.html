@@ -1,13 +1,56 @@
-<div class="row">
-    <div class="col-lg-11" ng-include src="'app/search/search.html'"></div>
-    <br>
-    <br>
-</div>
-<div class="row">
-    <div class="col-lg-1">
-        <ng-include src="'app/toWatchList/toWatch.html'">
+<navbar></navbar>
+<div class="row" id="moviesLayout">
+  <div class="col-lg-2" ng-repeat="movie in movies" id="singleMovie">
+    <div class="thumbnail">
+      <img id="movieImage" ng-click="open(movie)" ng-src={{movie.Poster}}>
+      <div class="caption">
+        <h3 class="">{{movie.Title}}</h3>
+        <h5 class="">{{movie.Awards}}</h5>
+        <div ng-hide="checkIfAdded(movie.Title)">
+          <button class="btn btn-default" ng-click="list(movie)">Add to Watchlist <span class="glyphicon glyphicon-heart"></span></button>
+        </div>
+        <div ng-show="checkIfAdded(movie.Title)">
+          <button class="btn btn-default" ng-click="delete(movie.Title)">Added <span class="glyphicon glyphicon-check"></span></button>
+        </div>
+        <p class="">{{movie.Plot.slice(0, 100)}}...</p>
+        <a data-toggle="tooltip" title="{{movie.tomatoRating}}" href="" class="btn btn-default btn-xs pull-right" role="button" ng-click="">
+          <img src="https://leanflix-production.storage.googleapis.com/production/assets/elements/critics-bc20c6ba489de471c76e312a9ee9244e.png">
+        </a>
+        <a ng-click="open(movie)" class="btn btn-default btn-xs" role="button">More Details</a>
+        <a href="{{movie.WikiURL}}" class="btn btn-default btn-xs" role="button">Wiki</a>
+        <a href="{{movie.YouTubeURL}}" class="btn btn-default btn-xs" role="button"><i class="glyphicon glyphicon-play"></i></a>
+      </div>
     </div>
-    <div class="col-lg-10 col-lg">
-        <ng-include src="'app/movies/movie.html'">
-    </div>
+  </div>
 </div>
+<div class="col-md-10 col-md-offset-1">{{err}}</div>
+<script type="text/ng-template" id="ModalInstanceCtrl.html">
+  <div class="modal-header">
+    <h3> {{ movie.Title }}</h3>
+  </div>
+  <div class="modal-body">
+    <div> {{ movie.Plot}}</div>
+    <br>
+    <div> <a href="{{movie.YouTubeURL}}" class="btn btn-default btn-xs" role="button"><i class="glyphicon glyphicon-play"></i> Play Trailer</a> </div>
+  </div>
+  <div class="modal-body">
+    <div>Awards: {{ movie.Awards}}</div>
+    <div> Director: {{ movie.Director}}</div>
+    <div>Actors: {{ movie.Actors}}</div>
+    <div> Country: {{ movie.Country}}</div>
+    <div> Genre: {{ movie.Genre}}</div>
+    <div> Rated: {{ movie.Rated}}</div>
+    <div> Runtime: {{ movie.Runtime}}</div>
+    <div> Year: {{ movie.Year}}</div>
+    <div> imdb Rating: {{ movie.imdbRating}}</div>
+    <div> Rotten Tomato UserRating: {{ movie.tomatoUserRating}}</div>
+  </div>
+</script>
+<footer></footer>
+<script type="text/javascript">
+$('.toggleModal').on('click', function(e) {
+
+  $('.modal').toggleClass('active');
+
+});
+</script>

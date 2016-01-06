@@ -1,0 +1,44 @@
+<navbar></navbar>
+<div class="container">
+  <div class="col-md-10 col-md-offset-4">
+    <h1>My Movie List</h1></div>
+
+  <div class="row">
+  </br>
+  <div ng-show='any()' class="col-md-10 col-md-offset-3">You haven't added any movies to your watchlist yet. </div>
+    <div ng-repeat="movie in movies">
+      <div class="col-sm-6 col-md-4 col-centered ">
+        <div class="thumbnail">
+          <div ng-click="open(movie)"> <img height=400px src="{{movie.Poster}}" alt="..."></div>
+          <div class="caption">
+            <div ng-click="open(movie)">{{ movie.Title }}</div>
+            <p><a ng-click="open(movie)" class="btn btn-primary" role="button">Details</a> <a ng-click="deleteMovie(movie._id)" class="btn btn-default" role="button">Delete</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--MODAL WINDOW-->
+<script type="text/ng-template" id="ModalInstanceCtrl.html">
+  <div class="modal-header">
+    <h3> {{ movie.Title }}</h3>
+  </div>
+  <div class="modal-body">
+    <div> {{ movie.Plot}}</div>
+    <br>
+    <div> <a href="{{movie.YouTubeURL}}" class="btn btn-default btn-xs" role="button"><i class="glyphicon glyphicon-play"></i> Play Trailer</a> </div>
+  </div>
+  <div class="modal-body">
+    <div>Awards: {{ movie.Awards}}</div>
+    <div> Director: {{ movie.Director}}</div>
+    <div> Country: {{ movie.Country}}</div>
+    <div> Genre: {{ movie.Genre}}</div>
+    <div> Rated: {{ movie.Rated}}</div>
+    <div> Runtime: {{ movie.Runtime}}</div>
+    <div> Year: {{ movie.Year}}</div>
+    <div> imdb Rating: {{ movie.imdbRating}}</div>
+    <div> Rotten Tomato UserRating: {{ movie.tomatoUserRating}}</div>
+  </div>
+</script>
+<footer></footer>
