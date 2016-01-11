@@ -23,9 +23,14 @@ A Movie Recommendation App helps users to find movies to watch based on users’
 
 4. Run `grunt serve` to start the development server. It should automatically open the client in your browser when ready.
 
-## Build & development
+## Website
 
-Run `grunt build` for building and `grunt serve` for preview.
+#[Live Demo](https://recflixapp.herokuapp.com/)
+
+![Recflix](/screenshots/recflix.png?raw=true "Recflix")
+
+![Recflix](/screenshots/recflix2.png?raw=true "Recflix")
+
 
 ## Testing
 
