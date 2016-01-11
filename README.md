@@ -1,6 +1,6 @@
-# yo-movie
+# Recflix
 
-This project was generated with the [Angular Full-Stack Generator](https://github.com/DaftMonk/generator-angular-fullstack) version 3.0.2.
+A Movie Recommendation App helps users to find movies to watch based on users’ preferences.
 
 ## Getting Started
 
